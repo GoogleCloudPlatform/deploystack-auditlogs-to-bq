@@ -64,7 +64,7 @@ resource "google_project_iam_member" "org_sa_bq_role" {
 }
 
 module "bigquery-dataset" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v18.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0"
   project_id = var.project_id
   id         = var.dataset_id
   location   = var.location
