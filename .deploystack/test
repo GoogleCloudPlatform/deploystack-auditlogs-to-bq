@@ -84,7 +84,7 @@ terraform apply  \
    -auto-approve
 
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v18.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0 exists"
     #TODO: Double check this set of options for test
     evalTest 'bq ls | grep -c' "1"
 section_close
@@ -103,7 +103,7 @@ terraform destroy  \
    -auto-approve
 
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v18.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0 does not exists"
     #TODO: Double check this set of options for test
     evalTest 'bq ls | grep -c' "EXPECTERROR"
 section_close
