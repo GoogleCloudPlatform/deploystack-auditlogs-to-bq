@@ -63,15 +63,12 @@ Before we deploy the architecture, you will at least need the following informat
 * The project Id.
 * The organization Id (as mentioned [here](https://cloud.google.com/sdk/gcloud/reference/projects/get-ancestors), the following command outputs the organization: `gcloud projects get-ancestors PROJECT_ID`)
 * A dataset Id to export logs to (see [naming conventions](https://cloud.google.com/bigquery/docs/datasets#dataset-naming)). Note: this will create a new dataset (to use an existing dataset, see the following section below: "Use an already existing BigQuery dataset")
-* A log filter which is a Cloud Logging log query (see [documentation](https://cloud.google.com/logging/docs/view/logging-query-language)) used to target specific audit logs to route to BigQuery (see examples in the [`terraform.tfvars.sample`](terraform.tfvars.sample) file). Note that you'll need to escape the quotes symbols.
-Example: `protoPayload.methodName:\"google.admin.\"` would target all Workspace logs (no need for string delimiting quotes at the beginning and the end of the log filter in the Deploystack interactive shell). 
+* A log filter which is a Cloud Logging log query (see [documentation](https://cloud.google.com/logging/docs/view/logging-query-language)) used to target specific audit logs to route to BigQuery. Note that you'll need to escape the quotes symbols.
+For example filters, please see the next section in this ReadMe.
 * Identity groups for both Owner and Reader role on the BigQuery dataset. 
+* Granting the [Logging Admin IAM role](https://cloud.google.com/iam/docs/understanding-roles#logging.admin) to the person running this script is recommended. 
 
-Click on the image below, sign in if required and when the prompt appears, click on “confirm”. It will walk you through setting up your architecture.
-
-<a align="center" href="https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fgooglestaging%2Fauditlogstobq&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image" target="_new">
-    <img alt="Open in Cloud Shell" src="https://gstatic.com/cloudssh/images/open-btn.svg">
-</a>
+[![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FGoogleCloudPlatform%2Fdeploystack-auditlogs-to-bq&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main)
 
 
 In case of failure, you can simply click on the button again to relaunch the ephemeral Cloud Shell environment or run the following command in the same shell: 
@@ -81,7 +78,21 @@ In case of failure, you can simply click on the button again to relaunch the eph
 deploystack install
 ```
 
-### Clean up your environment
+*In case this fails* for any reason during the process, please refer to the section below and manually delete the audit log sink before running the command again.
+
+If a warning regarding an undeclared variable should appear, this can safely be ignored.
+
+This is the startup screen that appears after clicking the button and confirming:
+
+![cloud_shell](cloud_shell.png)
+
+During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
+
+<center>
+<h4>🎉 Congratulations! 🎉  <br />
+You have successfully deployed your environment.</h4></center>
+
+### Clean Up Your Environment
 
 The easiest way to remove all the deployed resources is to run the following command in Cloud Shell:
 
@@ -90,12 +101,34 @@ deploystack uninstall
 ```
 
 The above command will delete the associated resources so there will be no billable charges made afterwards.
+In order to remove all of the resources, you will need to delete the Logging Sink that it creates at an organisational level. To do this, please complete the following steps:
+
+* Navigate to *Cloud Logging*
+* Navigate to *Logs Router*
+* In the menu at the top, please select your organisation
+* Delete the entry of type BigQuery dataset named audit-log-org-sink
 
 Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
 
-### Customizing to your environment
+### Customizing to Your Environment
 
-#### Use an already existing BigQuery dataset
+In this section you will find different ways to customise the architecture to your needs.
+
+#### Example Log Filters
+
+**GWS Audit Log Filter Example**
+This filter filters all of the audit logs concerning Google Workspace into the BigQuery dataset. These logs will tell you who created, edited, and/or deleted any resource and when this was done. This is mainly useful for auditing purposes, or to find out when a critical change to a resource was made.
+```protoPayload.methodName:\"google.admin.\"```
+
+**Data Access Audit Log Filter Example**
+This filter filters all of the logs concerning accessed data into the BigQuery dataset. 
+```logName=\"projects/PROJECT_ID/logs/cloudaudit.googleapis.com%2Fdata_access\"```
+
+**System Events Audit Log Filter Example**
+This filter filters all of the logs related to system events into the BigQuery dataset.
+```logName=\"projects/PROJECT_ID/logs/cloudaudit.googleapis.com%2Fsystem_event\"```
+
+#### Use A Pre-Existing BigQuery Dataset
 
 In order to push the audit logs to a BigQuery dataset that already exists in a project, follow these steps:
 
