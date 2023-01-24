@@ -26,6 +26,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "cloud-solutions/google-lb-and-armor-v1.0"
+    module_name = "cloud-solutions/auditlogs-to-bq-v1.0"
   }
 }
