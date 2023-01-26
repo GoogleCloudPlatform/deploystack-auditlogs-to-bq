@@ -33,6 +33,20 @@ resource "google_logging_organization_sink" "audit_log_org_sink" {
   }
 }
 
+# Either create a project or set up the given one
+module "project" {
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
+  name            = var.project_id
+  parent          = try(var.project_create.parent, null)
+  billing_account = try(var.project_create.billing_account_id, null)
+  project_create  = var.project_create != null
+  prefix          = var.project_create == null ? null : var.prefix
+  services = [
+    "bigquery.googleapis.com",
+    "logging.googleapis.com"
+  ]
+}
+
 resource "google_project_iam_member" "org_sa_bq_role" {
   project = var.project_id
   role    = "roles/bigquery.dataEditor"

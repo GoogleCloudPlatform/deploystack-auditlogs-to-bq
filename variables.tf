@@ -55,3 +55,17 @@ variable "readers_group_email" {
   description = "Email IDs for identity groups of users who can read the dataset."
   type        = string
 }
+
+variable "prefix" {
+  description = "Unique prefix used for resource names. Not used for project if 'project_create' is null."
+  type        = string
+}
+
+variable "project_create" {
+  description = "Provide values if project creation is needed, uses existing project if null. Parent is in 'folders/nnn' or 'organizations/nnn' format."
+  type = object({
+    billing_account_id = string
+    parent             = string
+  })
+  default = null
+}
