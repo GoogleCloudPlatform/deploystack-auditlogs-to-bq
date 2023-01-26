@@ -20,3 +20,6 @@
     "default": "EU"
   - "name": "org_id"
     "description": "Please enter the Organization Id."
+  - "name": "prefix"
+    "description": "Unique prefix used for resource names"
+    "default": "deploystack"
