@@ -130,7 +130,7 @@ This filter filters all of the logs related to system events into the BigQuery d
 
 In order to push the audit logs to a BigQuery dataset that already exists in a project, follow these steps:
 
-1. Remove the `"bigquery-dataset"` module block at the end of the [`main.tf`](main.tf) file.
+1. Remove the `"bigquery-dataset"` module block at the end of the [`main.tf`](main.tf#L66) file.
 2. Replace the following line in the `"google_logging_organization_sink"` resource block
 
 ```{terrafom}
