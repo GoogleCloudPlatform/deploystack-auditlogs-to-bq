@@ -46,15 +46,6 @@ variable "owners_group_email" {
   type        = string
 }
 
-# variable "project_create" {
-#   description = "Provide values if project creation is needed, uses existing project id if null. Parent is in 'folders/nnn' or 'organizations/nnn' format."
-#   type = object({
-#     billing_account_id = string
-#     parent             = string
-#   })
-#   default = null
-# }
-
 variable "project_id" {
   description = "Project id."
   type        = string

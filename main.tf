@@ -14,30 +14,6 @@
  * limitations under the License.
  */
 
-# module "project" {
-#   source = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
-#   billing_account = (var.project_create != null
-#     ? var.project_create.billing_account_id
-#     : null
-#   )
-#   parent = (var.project_create != null
-#     ? var.project_create.parent
-#   : null)
-#   prefix = (var.project_create == null
-#     ? null
-#   : var.prefix)
-#   name = var.project_id
-#   services = [
-#     "logging.googleapis.com",
-#     "bigquery.googleapis.com"
-#   ]
-#   service_config = {
-#     disable_on_destroy         = false
-#     disable_dependent_services = false
-#   }
-#   project_create = var.project_create != null
-# }
-
 resource "google_logging_organization_sink" "audit_log_org_sink" {
   name             = "audit-log-org-sink"
   org_id           = var.org_id
