@@ -1,0 +1,39 @@
+steps:
+  - name: 'hashicorp/terraform'
+    args:
+      - 'init'
+  - name: 'hashicorp/terraform'
+    args: [
+      'plan',
+      '-var', 'project_id=$PROJECT_ID',
+      '-var', 'prefix=deploystack',
+      '-var', 'dataset_id=ds_dataset',
+      '-var', 'filter=protoPayload.methodName:\"google.admin.\"',
+      '-var', 'org_id=652740264652',
+      '-var', 'owners_group_email=postmaster@ogma.joonix.net',
+      '-var', 'readers_group_email=postmaster@ogma.joonix.net'
+    ]
+  - name: 'hashicorp/terraform'
+    args: [
+      'apply',
+      '-var', 'project_id=$PROJECT_ID',
+      '-var', 'prefix=deploystack',
+      '-var', 'dataset_id=ds_dataset',
+      '-var', 'filter=protoPayload.methodName:\"google.admin.\"',
+      '-var', 'org_id=652740264652',
+      '-var', 'owners_group_email=postmaster@ogma.joonix.net',
+      '-var', 'readers_group_email=postmaster@ogma.joonix.net',
+      '-auto-approve'
+    ]
+  - name: 'hashicorp/terraform'
+    args: [
+      'destroy',
+      '-var', 'project_id=$PROJECT_ID',
+      '-var', 'prefix=deploystack',
+      '-var', 'dataset_id=ds_dataset',
+      '-var', 'filter=protoPayload.methodName:\"google.admin.\"',
+      '-var', 'org_id=652740264652',
+      '-var', 'owners_group_email=postmaster@ogma.joonix.net',
+      '-var', 'readers_group_email=postmaster@ogma.joonix.net',
+      '-auto-approve'
+    ]
