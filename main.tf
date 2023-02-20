@@ -35,7 +35,7 @@ resource "google_logging_organization_sink" "audit_log_org_sink" {
 
 # Either create a project or set up the given one
 module "project" {
-  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0"
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v20.0.0"
   name            = var.project_id
   parent          = try(var.project_create.parent, null)
   billing_account = try(var.project_create.billing_account_id, null)
