@@ -75,11 +75,11 @@ function evalTest() {
 
 get_project_id PROJECT
 get_project_number PROJECT_NUMBER $PROJECT
-PREFIX=deploystack
 PROJECT_ID=$PROJECT
-DATASET_ID="lgu_deploystack_dataset"
+PREFIX=deploystack
+DATASET_ID="ds_dataset"
 FILTER="protoPayload.methodName:\"google.admin.\""
-ORG_ID="652740264652"
+ORG_ID="298490623289"
 OWNERS_GROUP_EMAIL="deploystack-sa-authors@cloudadvocacyorg.joonix.net"
 READERS_GROUP_EMAIL="deploystack-sa-authors@cloudadvocacyorg.joonix.net"
 
