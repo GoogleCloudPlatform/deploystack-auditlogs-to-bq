@@ -61,19 +61,16 @@ function evalTest() {
 
 get_project_id PROJECT
 get_project_number PROJECT_NUMBER $PROJECT
-# TODO: Script is pretty rudimentary, so make sure all of these variables are actually needed for test
-DATASET_ID=[SET VALUE HERE]
-FILTER=[SET VALUE HERE]
-ORG_ID=[SET VALUE HERE]
-OWNERS_GROUP_EMAIL=[SET VALUE HERE]
-PROJECT_ID=[SET VALUE HERE]
-READERS_GROUP_EMAIL=[SET VALUE HERE]
- 
+PROJECT_ID=$PROJECT
+DATASET_ID="ds_dataset"
+FILTER="protoPayload.methodName:\"google.admin.\""
+ORG_ID="298490623289"
+OWNERS_GROUP_EMAIL="deploystack-sa-authors@cloudadvocacyorg.joonix.net"
+READERS_GROUP_EMAIL="deploystack-sa-authors@cloudadvocacyorg.joonix.net"
 
 gcloud config set project ${PROJECT}
 
 terraform init
-# TODO: Make sure all of these variables are correct and actually need to be passed in.:
 terraform apply  \
    -var dataset_id=$DATASET_ID \
    -var filter=$FILTER \
@@ -83,14 +80,10 @@ terraform apply  \
    -var readers_group_email=$READERS_GROUP_EMAIL \
    -auto-approve
 
-
 section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0 exists"
-    #TODO: Double check this set of options for test
     evalTest 'bq ls | grep -c' "1"
 section_close
 
-
-# TODO: Make sure all of these variables are correct and actually need to be passed in.:
 terraform destroy  \
    -var dataset_id=$DATASET_ID \
    -var exclusions=$EXCLUSIONS \
@@ -102,12 +95,10 @@ terraform destroy  \
    -var readers_group_email=$READERS_GROUP_EMAIL \
    -auto-approve
 
-
 section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0 does not exists"
     #TODO: Double check this set of options for test
     evalTest 'bq ls | grep -c' "EXPECTERROR"
 section_close
-
 
 printf "$DIVIDER"
 printf "CONGRATS!!!!!!! \n"
