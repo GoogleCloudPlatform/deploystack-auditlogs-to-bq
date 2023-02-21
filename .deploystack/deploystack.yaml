@@ -18,6 +18,10 @@
   - "name": "location"
     "description": "Please enter the dataset location."
     "default": "EU"
+    options:
+    - US
+    - EU
+    - ASIA
   - "name": "org_id"
     "description": "Please enter the Organization Id."
   - "name": "prefix"
