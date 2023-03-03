@@ -86,6 +86,7 @@ READERS_GROUP_EMAIL="deploystack-sa-authors@cloudadvocacyorg.joonix.net"
 gcloud config set project ${PROJECT}
 
 terraform init
+
 terraform apply  \
    -var dataset_id=$DATASET_ID \
    -var filter=$FILTER \
@@ -96,19 +97,13 @@ terraform apply  \
    -var prefix=$PREFIX \
    -auto-approve
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v19.0.0 exists"
-    evalTest 'gcloud projects describe var.project_id --format="value(name)"' "${PROJECT}"
-section_close
-
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0 exists"
-    evalTest 'bq ls | grep -c $DATASET_ID' "1"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v20.0.0 exists"
+    evalTest 'bq ls | grep -c ${DATASET_ID}' "1"
 section_close
 
 terraform destroy  \
    -var dataset_id=$DATASET_ID \
-   -var exclusions=$EXCLUSIONS \
    -var filter=$FILTER \
-   -var location=$LOCATION \
    -var org_id=$ORG_ID \
    -var owners_group_email=$OWNERS_GROUP_EMAIL \
    -var project_id=$PROJECT_ID \
@@ -116,7 +111,7 @@ terraform destroy  \
    -var prefix=$PREFIX \
    -auto-approve
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v19.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v20.0.0 does not exists"
     evalTest 'bq ls | grep -c $DATASET_ID' "0"
 section_close
 
