@@ -108,6 +108,16 @@ In order to remove all of the resources, you will need to delete the Logging Sin
 
 Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
 
+### Standalone deployment
+
+Since the scripts are based on Terraform, it is possible to deploy this solution through `Terraform` directly, without having to go through `Deploystack`.
+Just clone this repo, create a `terraform.tfvars` file with your own values and call the following commands:
+``` {shell}
+terraform init
+terraform plan -out=execplan.out
+terraform apply execplan.out
+```
+
 ### Customizing to Your Environment
 
 In this section you will find different ways to customise the architecture to your needs.
