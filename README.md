@@ -1,3 +1,4 @@
+[![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
 # Ingestion and analysis of audit logs for a Workspace / Google Cloud organization
 
 As a Workspace / Google Cloud [organization administrator](https://cloud.google.com/resource-manager/docs/creating-managing-organization), being able to oversee and monitor events happening across projects, users and resources for security, auditing and regulatory reasons is a core part of an administrator's responsibilities. Unfortunately, as these organizations generate a large variety and volume of events, this task requires a robust infrastructure to both ingest and analyze the logs.
