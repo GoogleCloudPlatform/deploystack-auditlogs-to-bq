@@ -97,7 +97,7 @@ terraform apply  \
    -var prefix=$PREFIX \
    -auto-approve
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v20.0.0 exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v23.0.0 exists"
     evalTest 'bq ls | grep -c ${DATASET_ID}' "1"
 section_close
 
@@ -111,7 +111,7 @@ terraform destroy  \
    -var prefix=$PREFIX \
    -auto-approve
 
-section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v20.0.0 does not exists"
+section_open "Test github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v23.0.0 does not exists"
     evalTest 'bq ls | grep -c $DATASET_ID' "0"
 section_close
 
