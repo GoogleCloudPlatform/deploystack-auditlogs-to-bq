@@ -1,9 +1,24 @@
 [![GC Start](gcp_banner.png)](https://cloud.google.com/?utm_source=github&utm_medium=referral&utm_campaign=GCP&utm_content=packages_repository_banner)
-# Ingestion and analysis of audit logs for a Workspace / Google Cloud organization
+# Analyze Audit Logs for a GWS or Google Cloud Organization with Big Query
 
-As a Workspace / Google Cloud [organization administrator](https://cloud.google.com/resource-manager/docs/creating-managing-organization), being able to oversee and monitor events happening across projects, users and resources for security, auditing and regulatory reasons is a core part of an administrator's responsibilities. Unfortunately, as these organizations generate a large variety and volume of events, this task requires a robust infrastructure to both ingest and analyze the logs.
+## Introduction
+This architecture uses click-to-deploy so you can spin up infrastructure in minutes using terraform!
 
-This repository contains the necessary Terraform files and steps to deploy an easy-to-manage pipeline for ingestion audit logs at the organization level to monitor Workspace or any Google Cloud audit logs events through a simple SQL interface in BigQuery. This allows simple query and rapid analytic capabilities as well as a powerful backend for any dashboard like Looker or Datastudio.  
+Google Cloud offers a wide range of services to help you build and run applications. Although external users can pose security risks, it's important to note that potential security threats may also originate from **within your own organization**. That's why it's important to monitor your Google Cloud environment for suspicious activity.
+
+One way to do this is to collect and store Audit Logs. Audit Logs record all activity in your Google Cloud environment, including **who** made changes, **when** they were made, and **what** resources were affected. This information can be invaluable for troubleshooting security incidents and identifying potential compliance violations and for internal audits and visibility.
+
+However, collecting and storing audit logs can be a time-consuming and complex process. That's where it can be useful to analyze Audit Logs in BigQuery. The following **click-to-deploy** architecture automates the process of collecting and storing organization audit logs in BigQuery.
+
+**BigQuery** is a serverless, highly scalable, cost-effective data warehouse. It's the perfect place to store audit logs because it makes it easy to query and analyze them.
+
+With this click-to-deploy, you can:
+
+* Collect audit logs from all projects in your organization.
+* Store audit logs in BigQuery.
+* Query audit logs using SQL.
+* Use audit logs to troubleshoot security incidents.
+* Identify potential compliance violations.
 
 ## Use cases
 
