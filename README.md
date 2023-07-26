@@ -59,6 +59,9 @@ The main components that are deployed in this architecture are the following (yo
 * [BigQuery](https://cloud.google.com/bigquery): managed data warehouse solution that offers a powerful scalable SQL engine for analytical workloads
 * [Service accounts](https://cloud.google.com/iam/docs/service-accounts): credentials used by Google Cloud services to interact with other Google Cloud components
 
+## Costs
+Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator#id=6506829f-9fbc-4d6c-ba68-1ae035c2e745).
+
 ## Setup
 
 ### Prerequisites
