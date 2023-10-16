@@ -3,11 +3,11 @@
 
 ## Introduction
 
-Google Cloud offers a wide range of services to help you build and run applications. Although external users can pose security risks, it's important to note that potential security threats may also originate from **within your own organization**. That's why it's important to monitor your Google Cloud environment for suspicious activity.
+Google Cloud offers a wide range of services to help you build and run applications.While external users bring unique challenges to security, it's important to note that potential security threats may also originate from **within your own organization**. That's why it's important to monitor your Google Cloud environment for suspicious activity.
 
 One way to do this is to collect and store Audit Logs. Audit Logs record all activity in your Google Cloud environment, including **who** made changes, **when** they were made, and **what** resources were affected. This information can be invaluable for troubleshooting security incidents and identifying potential compliance violations and for internal audits and visibility.
 
-However, collecting and storing audit logs can be a time-consuming and complex process. That's where it can be useful to analyze Audit Logs in BigQuery. The following **click-to-deploy** architecture automates the process of collecting and storing organization audit logs in BigQuery.
+Managing audit logs, though essential, can require significant time and effort. That's where it can be useful to analyze Audit Logs in BigQuery. The following **click-to-deploy** architecture automates the process of collecting and storing organization audit logs in BigQuery.
 
 **BigQuery** is a serverless, highly scalable, cost-effective data warehouse. It's the perfect place to store audit logs because it makes it easy to query and analyze them.
 
@@ -23,7 +23,7 @@ With this click-to-deploy, you can:
 
 ### Google Workspace organization monitoring
 
-By filtering on specific events like a login failure, admin rights grant, Google Drive ownership change or any security settings change etc., this architecture allows an organization administrator to query information about potential weak signals indicating a security breach or a lack of compliance across the organization and its users.
+By filtering on specific events like a login failure, admin rights grant, Google Drive ownership change or any security settings change etc., This architecture empowers organization administrators to proactively identify subtle indicators of security breaches or compliance gaps across the organization and its users.
 For more information, please refer to the [Google Workspace Reports API](https://developers.google.com/admin-sdk/reports/v1/appendix/activity/admin-event-names) and the [Audit logs for Google Workspace pages](https://cloud.google.com/logging/docs/audit/gsuite-audit-logging).
 
 ### Google Cloud Data access auditing
@@ -81,25 +81,25 @@ Before we deploy the architecture, you will at least need the following informat
 * A log filter which is a Cloud Logging log query (see [documentation](https://cloud.google.com/logging/docs/view/logging-query-language)) used to target specific audit logs to route to BigQuery. Note that you'll need to escape the quotes symbols.
 For example filters, please see the next section in this ReadMe.
 * Identity groups for both Owner and Reader role on the BigQuery dataset. 
-* Granting the [Logging Admin IAM role](https://cloud.google.com/iam/docs/understanding-roles#logging.admin) to the person running this script is recommended. 
+* It is recommended to grant the [Logging Admin IAM role](https://cloud.google.com/iam/docs/understanding-roles#logging.admin) to the person running this script.
 
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/GoogleCloudPlatform/deploystack-auditlogs-to-bq&cloudshell_image=gcr.io%2Fds-artifacts-cloudshell%2Fdeploystack_custom_image&cloudshell_git_branch=main&cloudshell_tutorial=tutorial.md)
 
-In case of failure, you can simply click on the button again to relaunch the ephemeral Cloud Shell environment or run the following command in the same shell:
+In the event of an issue, you have the option to easily relaunch the ephemeral Cloud Shell environment by clicking the button again. Alternatively, you can execute the following command in the same shell:
 
 ``` {shell}
 deploystack install
 ```
 
-*In case this fails* for any reason during the process, please refer to the section below and manually delete the audit log sink before running the command again.
+*In case of any issues* during the process, please refer to the section below and follow the manual steps to delete the audit log sink before rerunning the command.
 
-If a warning regarding an undeclared variable should appear, this can safely be ignored.
+If a warning about an undeclared variable appears, you can safely disregard it.
 
 This is the startup screen that appears after clicking the button and confirming:
 
 ![cloud_shell](cloud_shell.png)
 
-During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In case of failure, you can simply click the button again.
+During the process, you will be asked for some user input. All necessary variables are explained at the bottom of this ReadMe file. In the rare event of a failure, you can easily retry by clicking the button again.
 
 <center>
 <h4>🎉 Congratulations! 🎉  <br />
