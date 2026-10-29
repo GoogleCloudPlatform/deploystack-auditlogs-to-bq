@@ -60,7 +60,7 @@ The main components that are deployed in this architecture are the following (yo
 * [Service accounts](https://cloud.google.com/iam/docs/service-accounts): credentials used by Google Cloud services to interact with other Google Cloud components
 
 ## Costs
-Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator#id=6506829f-9fbc-4d6c-ba68-1ae035c2e745).
+Pricing Estimates - We have created a sample estimate based on some usage we see from new startups looking to scale. This estimate would give you an idea of how much this deployment would essentially cost per month at this scale and you extend it to the scale you further prefer. Here's the [link](https://cloud.google.com/products/calculator/estimate-preview/3aef7647-6024-4781-926e-d81043d3a738?hl=en).
 
 ## Setup
 
@@ -125,6 +125,16 @@ In order to remove all of the resources, you will need to delete the Logging Sin
 * Delete the entry of type BigQuery dataset named audit-log-org-sink
 
 Note: This will also destroy the BigQuery dataset as the following option in `main.tf` is set to `true`: `delete_contents_on_destroy`.
+
+### Standalone deployment
+
+Since the scripts are based on Terraform, it is possible to deploy this solution through `Terraform` directly, without having to go through `Deploystack`.
+Just clone this repo, create a `terraform.tfvars` file with your own values and call the following commands:
+``` {shell}
+terraform init
+terraform plan -out=execplan.out
+terraform apply execplan.out
+```
 
 ### Customizing to Your Environment
 

@@ -35,11 +35,11 @@ resource "google_logging_organization_sink" "audit_log_org_sink" {
 
 # Either create a project or set up the given one
 module "project" {
-  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v23.0.0"
+  source          = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/project?ref=v59.2.0"
   name            = var.project_id
   parent          = try(var.project_create.parent, null)
   billing_account = try(var.project_create.billing_account_id, null)
-  project_create  = var.project_create != null
+  project_reuse   = var.project_create != null ? null : {}
   prefix          = var.project_create == null ? null : var.prefix
   services = [
     "bigquery.googleapis.com",
@@ -54,7 +54,7 @@ resource "google_project_iam_member" "org_sa_bq_role" {
 }
 
 module "bigquery-dataset" {
-  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v23.0.0"
+  source     = "github.com/GoogleCloudPlatform/cloud-foundation-fabric//modules/bigquery-dataset?ref=v59.2.0"
   project_id = var.project_id
   id         = var.dataset_id
   location   = var.location
