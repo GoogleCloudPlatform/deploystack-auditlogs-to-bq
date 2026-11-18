@@ -58,6 +58,9 @@ module "bigquery-dataset" {
   project_id = var.project_id
   id         = var.dataset_id
   location   = var.location
+  # Set the dataset ACL authoritatively via inline access blocks so BigQuery's
+  # default project-level ACL (projectOwners/Writers/Readers) is not applied.
+  dataset_access = true
   access = {
     reader-group = { role = "READER", type = "group" }
     owner        = { role = "OWNER", type = "group" }
